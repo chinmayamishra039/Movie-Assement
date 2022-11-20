@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .flex-container {
+        display: flex;
+        align-items: stretch;
+        background-color: #f1f1f1;
+      }
+
+      .flex-container > div {
+        background-color: DodgerBlue;
+        color: white;
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Shuffle of card</h1>
+
+    <h3>Use The Shuffle button to start and Stop button to stop Shuffle</h3>
+
+    <div class="flex-container">
+      <div id="1" style="order: 3">1</div>
+      <div id="2" style="order: 2">2</div>
+      <div id="3" style="order: 4">3</div>
+      <div id="4" style="order: 1">4</div>
+    </div>
+    <button type="button" class="start">Shuffle</button>
+    <button type="button" class="stop">Stop</button>
+    <script>
+      let clear;
+      let time = prompt("How much Second You Want to shuffle", 10);
+
+      function start() {
+        let a = document.querySelectorAll(".flex-container>div");
+        var b = [0, 1, 2, 3];
+        b.sort(() => Math.random() - 0.5);
+        for (let index = 0; index < b.length; index++) {
+          a[index].style["order"] = b[index];
+        }
+      }
+
+      document.querySelector(".start").addEventListener("click", () => {
+        clear = setInterval(start, time * 1000);
+      });
+      document.querySelector(".stop").addEventListener("click", () => {
+        clearInterval(clear);
+      });
+    </script>
+  </body>
+</html>

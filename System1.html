@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .block {
+        display: block;
+        width: 100%;
+        margin: 5px;
+        border: 1px solid green;
+        background-color: #04aa6d;
+        color: white;
+        padding: 14px 28px;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: left;
+      }
+      .btn {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        background-color: black;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="movie" id="movie" style="text-align: center">
+      Please help top 3 reason to watch movie One
+    </h2>
+    <ol>
+      <li>
+        <button
+          class="block"
+          id="1"
+          value="first"
+          onclick="return change(this)"
+        >
+          THE FILMS ARE CLASSIC
+          <span style="visibility: hidden; float: right" class="btn"
+            >ggcgcg</span
+          >
+        </button>
+      </li>
+      <li>
+        <button
+          class="block"
+          id="2"
+          value="second"
+          onclick="return change(this)"
+        >
+          GOOD VS EVIL
+          <span style="visibility: hidden; float: right" class="btn"
+            >ggcgcg</span
+          >
+        </button>
+      </li>
+      <li>
+        <button
+          class="block"
+          id="3"
+          value="third"
+          onclick="return change(this)"
+        >
+          THE MUSIC
+          <span style="visibility: hidden; float: right" class="btn"
+            >ggcgcg</span
+          >
+        </button>
+      </li>
+      <li>
+        <button
+          class="block"
+          id="4"
+          value="fourth"
+          onclick="return change(this)"
+        >
+          THE MYTHOLOGY
+          <span style="visibility: hidden; float: right" class="btn"
+            >ggcgcg</span
+          >
+        </button>
+      </li>
+      <li>
+        <button
+          class="block"
+          id="5"
+          value="fifth"
+          onclick="return change(this)"
+        >
+          THE STORY
+          <span style="visibility: hidden; float: right" class="btn"
+            >ggcgcg</span
+          >
+        </button>
+      </li>
+    </ol>
+    <h1 class="final" id="final" style="text-align: center"></h1>
+
+    <script>
+      var arr = [];
+      var arr2 = [];
+      function change(el) {
+        let id = Number(el.id);
+
+        if (arr.length < 3 && !arr.includes(id)) {
+          document.getElementById(id).style.background = "red";
+          arr.push(id);
+          arr2.push(el);
+        } else if (arr.includes(id) && arr.indexOf(id) < arr.length - 1) {
+          const index = arr.indexOf(id);
+          [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+        }
+        if (arr.length <= 3) {
+          arr.forEach((item, index, Array) => {
+            let user = arr2.find((item1) => Number(item1.id) == item);
+            const element = user.firstElementChild;
+            element.style.visibility = "visible";
+            element.innerText = `number is ${index + 1}`;
+          });
+        }
+        if (arr.length == 3) {
+          document.getElementById("movie").innerHTML =
+            "This Is Your Top 3 Reason to WATCH MOVIE ONE";
+          document.getElementById("final").innerText =
+            "[THIS IS THE RESULT OF YOUR OPTIONS]";
+        }
+      }
+    </script>
+  </body>
+</html>
